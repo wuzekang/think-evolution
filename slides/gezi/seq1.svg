@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="365px" preserveAspectRatio="none" style="width:294px;height:365px;" version="1.1" viewBox="0 0 294 365" width="294px" zoomAndPan="magnify"><defs><filter height="300%" id="f1a801sa0yxtax" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f1a801sa0yxtax)" height="179.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="240.5" y="98.5625"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="36" x2="36" y1="38.2969" y2="324.8281"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="138.5" x2="138.5" y1="38.2969" y2="324.8281"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="245.5" x2="245.5" y1="38.2969" y2="324.8281"/><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="8" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="15" y="22.9951">Client</text><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="8" y="323.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="15" y="343.8232">Client</text><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="58" x="107.5" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="114.5" y="22.9951">Server</text><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="58" x="107.5" y="323.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="114.5" y="343.8232">Server</text><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="203.5" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="210.5" y="22.9951">Database</text><rect fill="#FEFECE" filter="url(#f1a801sa0yxtax)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="80" x="203.5" y="323.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="210.5" y="343.8232">Database</text><rect fill="#FFFFFF" filter="url(#f1a801sa0yxtax)" height="179.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="240.5" y="98.5625"/><polygon fill="#A80036" points="126.5,65.4297,136.5,69.4297,126.5,73.4297,130.5,69.4297" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="36.5" x2="132.5" y1="69.4297" y2="69.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="43.5" y="64.3638">开始查询</text><polygon fill="#A80036" points="228.5,94.5625,238.5,98.5625,228.5,102.5625,232.5,98.5625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="138.5" x2="234.5" y1="98.5625" y2="98.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="145.5" y="93.4966">获取查询数据</text><polygon fill="#A80036" points="149.5,273.6953,139.5,277.6953,149.5,281.6953,145.5,277.6953" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="143.5" x2="244.5" y1="277.6953" y2="277.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="155.5" y="272.6294">返回查询数据</text><polygon fill="#A80036" points="47.5,302.8281,37.5,306.8281,47.5,310.8281,43.5,306.8281" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="41.5" x2="137.5" y1="306.8281" y2="306.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="78" x="53.5" y="301.7622">返回查询结果</text><!--
+@startuml
+Client -> Server : 开始查询
+
+
+Server -> Database : 获取查询数据
+activate Database 
+|||
+|||
+|||
+|||
+|||
+|||
+Database -> Server : 返回查询数据
+deactivate Database 
+
+Server -> Client : 返回查询结果
+@enduml
+
+PlantUML version 1.2019.07(Mon Jun 24 19:59:20 UTC 2019)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.7.0_25-b15
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

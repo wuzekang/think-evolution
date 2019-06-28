@@ -1,0 +1,25 @@
+@startuml seq
+Client -> Server : 开始查询
+
+
+Server -> Client : 返回任务信息
+
+Server -> Database : 获取查询数据
+activate Database 
+
+
+Client -> Server : 轮询任务状态
+Server -> Client : STARTED
+|||
+Client -> Server : 轮询任务状态
+Server -> Client : STARTED
+
+Database -> Server : 返回查询数据
+deactivate Database 
+
+Client -> Server : 轮询任务状态
+Server -> Client : SUCCESS
+|||
+Client -> Server : 请求查询结果
+Server -> Client : 返回查询结果
+@enduml

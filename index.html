@@ -1,49 +1,289 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>天眼前端演进之路</h1>
+			</section>
+			<section>
+				<section data-markdown>
+					## 天眼 1.0
+					> PHP CI
+				</section>
+				<section data-markdown="slides/mvc/model.md"></section>
+				<section data-markdown="slides/mvc/view.md"></section>
+				<section data-markdown="slides/mvc/controller.md"></section>
+				<section data-markdown>
+					## 问题
+
+					- 前端代码不易重用
+					- 后端大量模板代码
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown>
+					## 天眼 2.0
+					> PHP CI + React
+
+				</section>
+				
+				<section data-markdown>
+					## 改进
+
+					- SQL语法增强
+					- 列处理表达式
+					- 通用报表组件
+				</section>
+
+				<section>
+					<h3>SQL语法增强</h3>
+          <div style="display:flex;">
+<pre><code>select * from dim_page_#
+  where true
+  [and crate_time
+    between {{ date_start }}
+    and {{ date_end }}]
+  [and app_id in {{ app_id }}]
+  [and media_id in {{ media_id }}]
+  [limit {{ limit }}]
+</code></pre>
+<div style="width: 16px;"></div>
+<pre><code>{
+  "cid": 7,
+  "date_start": "2019-06-01",
+  "date_end": "2019-06-28",
+  "app_id": [ 1985, 1989 ],
+  "limit": 100
+}
+
+</code></pre>
+          </div>
+        <h3>👇</h3>
+<pre><code>select * from dim_page_7
+  where true
+  and crate_time
+    between '2019-06-01' and '2019-06-28'
+  and app_id in (1985, 1989)
+  limit 100
+</code></pre>
+				</section>
+
+				<section data-markdown>
+						### 列处理表达式
+
+						```js
+						dnu → value("dnu")
+						dnpu → value("dnpu")
+						dnu + dnpu → add(value("dnu"), value("dnpu"))
+						dnu * dnpu → mul(value("dnu"), value("dnpu"))
+						sum(dpu) / avg(dnu) → div(sum(value("dpu")), avg(value("dnu")))
+						```
+
+						```js
+						function add(f1, f2) {
+							return function(data) {
+								return f1(data) + f2(data);
+							}
+						}
+
+						function div(f1, f2) {
+							return function(data) {
+								return f1(data) / f2(data);
+							}
+						}
+						
+						function value(key) {
+							return function(data) {
+								return data[key];
+							}
+						}
+						
+						const rows = [
+							{ x: 1, y: 2 },
+							{ x: 3, y: 4 },
+							{ x: 9, y: 8 },
+						];
+						
+						const columns = [
+							{ key: 'x', getter: value('x'), },
+							{ key: 'y', getter: value('y'), },
+							{ key: 'z0', getter: add(value('x'), value('y')), },
+							{ key: 'z1', getter: div(value('x'), add(value('x'), value('y'))), }
+						]
+						
+						const result = rows.map(
+							row => columns.reduce(
+								(acc, column) => ({...acc, [column.key]: column.getter(row)}),
+								{}
+							)
+						)
+						
+						// [ { x: 1, y: 2, z0: 3, z1: 0.3333333333333333 },
+						//   { x: 3, y: 4, z0: 7, z1: 0.42857142857142855 },
+						//   { x: 9, y: 8, z0: 17, z1: 0.5294117647058824 } ]
+						```
+				</section>
+				
+				<section data-background-video="">
+					<h3>通用报表组件</h3>
+					<video data-autoplay loop class="stretch" src="slides/customize/cpm.mp4"></video>
+				</section>
+				
+				<section data-markdown="slides/customize/source.md"></section>
+
+				<section data-markdown>
+					## 问题
+					- 查询占用大量连接数
+					- 自助报表调试很困难
+					- 复杂查询需要写接口
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					## Think & GeZi
+					> Golang Gin + Python Flask + React
+				</section>
+				<section data-markdown>
+					## 改进
+					- 查询结果异步轮询
+					- 在线接口调试生成
+				</section>
+
+				<section>
+					<h3>查询结果异步轮询</h3>
+					<div style="display: flex; align-items: center; justify-content: center;">
+							<img src="slides/gezi/seq1.svg" style="background: #fff" />
+							<div style="padding: 16px;" >👉</div>
+							<img src="slides/gezi/seq.svg" style="background: #fff" />
+					</div>
+				</section>
+
+				<section>
+					<h3>在线接口编辑生成</h3>
+				</section>
+
+
+				<section>
+					<h3>插件机制</h3>
+					<img src="slides/gezi/model.png" />
+				</section>
+				
+				<section data-markdown>
+					```js
+					function run(ctx, [plugin_1, plugin_2, plugin_main]) {
+						var next = function() {
+							plugin_1(ctx, function() {
+								plugin_2(ctx, function() {
+									plugin_main(ctx, function() { })
+								})
+							})
+						};
+						next()
+						return ctx;
+					}
+					```
+				</section>
+
+				<section data-markdown>
+					```js
+					var plugin_main = function(ctx, next) {
+						if (ctx.query.language === 'javascript') {
+							var queryText = eval('(function(params){ ' + ctx.query.queryText + '\n' + 'return main(params);\n' + '})(ctx.params)');
+							ctx.query.language = 'sql';
+							ctx.query.queryText = queryText;
+						}
+						ctx.query.queryText = __prepare(ctx.query.queryText, ctx.params)
+						next();
+					}
+					```
+				</section>
+				<section data-markdown>
+						<h2>插件执行</h2>
+						```ts
+						interface IQueryContext {
+							query: IQuery,
+							maxAge: number,
+							refresh: boolean,
+							params: Object,
+						}
+	
+						interface IQuery {
+							id: number,
+							name: string,
+							key: string,
+							language: string,
+							queryText: string,
+							dataSourceID?: number,
+							createdAt: string,
+							updatedAt: string,
+						}
+						
+						type IPlugin = (ctx: IQueryContext, next: () => void) => void
+						
+						function run(ctx : IQueryContext, plugins: IPlugin[]) {
+							const next = plugins.reverse().reduce<() => void>(
+								function(next, plugin) {
+									return function() {
+										plugin(ctx, next);
+									}
+								},
+								() => undefined
+							)
+							next();
+							return ctx;
+						}
+						```
+					</section>
+			</section>
+			<section>
+				<section data-markdown>
+					## Whats next ?
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<script src="js/reveal.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			hash: true,
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+	</script>
+</body>
 </html>
